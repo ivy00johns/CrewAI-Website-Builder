@@ -3,7 +3,7 @@ load_dotenv()
 
 from crewai import Crew
 from tasks import WebsiteTasks
-from frontend_agents import FrontendAgents
+from agents import FrontendAgents
 
 # Initialize tasks and agents
 tasks = WebsiteTasks()
