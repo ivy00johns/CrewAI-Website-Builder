@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "crewai-website-builder"
 version = "0.1.0"
-description = ""
+description = "This project leverages the CrewAI framework to automate and streamline website development processes."
 authors = ["ivy00johns <ivy00johns@users.noreply.github.com>"]
 readme = "README.md"
 

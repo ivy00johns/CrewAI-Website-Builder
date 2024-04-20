@@ -1,10 +1,12 @@
+import os
+
 from crewai import Agent
 from textwrap import dedent
 from langchain_community.llms import Ollama
 
 class FrontendAgents:
 	def __init__(self):
-		self.Ollama = Ollama(model="codellama")
+		self.Ollama = Ollama(model=f"{os.environ['OLLAMA_MODEL_NAME']}")
 
 	def senior_frontend_engineer_agent(self):
 		return Agent(
