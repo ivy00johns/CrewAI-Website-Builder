@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "crewai-website-builder"
+version = "0.1.0"
+description = ""
+authors = ["ivy00johns <ivy00johns@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+crewai = "^0.11.0"
+langchain-community = "^0.0.10"
+langchain-core = "^0.1.8"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
