@@ -3,7 +3,7 @@ from crewai import Agent, Task, Crew, Process
 
 os.environ['OPENAI_API_BASE'] = "https://api.groq.com/openai/v1"
 os.environ['OPENAI_MODEL_NAME'] = "llama3-70b-8192"
-os.environ['OPENAI_API_KEY'] = "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"
+os.environ['OPENAI_API_KEY'] = ""
 
 email = "Nigerian Prince sending some gold."
 # email = "Hey, your neighbor John here, your house seems to be on fire. This is NOT A JOKE!"
