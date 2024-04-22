@@ -1,12 +1,28 @@
 import os
 
+from dotenv import load_dotenv
 from crewai import Agent
 from textwrap import dedent
-from langchain_community.llms import Ollama
+
+load_dotenv()
+llm_provider = os.getenv("LLM_PROVIDER").lower()
+
+if llm_provider == "groq":
+	os.environ['OPENAI_API_BASE'] = os.getenv("GROQ_API_BASE")
+	os.environ['OPENAI_MODEL_NAME'] = os.getenv("GROQ_MODEL_NAME")
+	os.environ['OPENAI_API_KEY'] = os.getenv("GROQ_API_KEY")
+elif llm_provider == "ollama":
+	os.environ['OPENAI_API_BASE'] = os.getenv("OLLAMA_API_BASE")
+	os.environ['OPENAI_MODEL_NAME'] = os.getenv("OLLAMA_MODEL_NAME")
+elif llm_provider == "openai":
+	os.environ['OPENAI_MODEL_NAME'] = os.getenv("OPENAI_MODEL_NAME")
+	os.environ['OPENAI_API_KEY'] = os.getenv("OPENAI_API_KEY") 
+else:
+	raise ValueError("Invalid LLM provider specified in .env")
 
 class FrontendAgents:
 	def __init__(self):
-		self.Ollama = Ollama(model=f"{os.environ['OLLAMA_MODEL_NAME']}")
+		pass
 
 	def senior_frontend_engineer_agent(self):
 		return Agent(
@@ -21,8 +37,7 @@ class FrontendAgents:
 				about user experience and strive to deliver intuitive and
 				visually appealing designs."""),
 			allow_delegation=False,
-			verbose=True,
-			llm=self.Ollama
+			verbose=True
 		)
 
 	def frontend_qa_engineer_agent(self):
@@ -39,8 +54,7 @@ class FrontendAgents:
 				You are dedicated to collaborating with developers to deliver
 				exceptional user interfaces."""),
 			allow_delegation=False,
-			verbose=True,
-			llm=self.Ollama
+			verbose=True
 		)
 
 	def ui_ux_designer_agent(self):
@@ -57,13 +71,12 @@ class FrontendAgents:
 				You are dedicated to creating interfaces that are both
 				aesthetically pleasing and highly functional."""),
 			allow_delegation=True,
-			verbose=True,
-			llm=self.Ollama
+			verbose=True
 		)
 
 class JavaScriptAgents:
 	def __init__(self):
-		self.Ollama = Ollama(model="codellama")
+		pass
 
 	def senior_javascript_engineer_agent(self):
 		return Agent(
@@ -78,8 +91,7 @@ class JavaScriptAgents:
 			  	industry standards. You are proficient in using testing frameworks
 			  	and are passionate about delivering exceptional user experiences."""),
 			allow_delegation=False,
-			verbose=True,
-			llm=self.Ollama
+			verbose=True
 		)
 
 	def javascript_qa_engineer_agent(self):
@@ -96,8 +108,7 @@ class JavaScriptAgents:
 				collaborating with developers to ensure the highest quality
 				standards are met."""),
 			allow_delegation=False,
-			verbose=True,
-			llm=self.Ollama
+			verbose=True
 		)
 
 	def chief_javascript_qa_engineer_agent(self):
@@ -114,6 +125,5 @@ class JavaScriptAgents:
 				teams. You are passionate about continuous improvement and are
 				always seeking ways to optimize the QA process."""),
 			allow_delegation=True,
-			verbose=True,
-			llm=self.Ollama
+			verbose=True
 		)
